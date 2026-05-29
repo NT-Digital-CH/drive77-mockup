@@ -1,0 +1,131 @@
+:root {
+  --color-bg:        #0D0D0D;
+  --color-surface:   #161616;
+  --color-card:      #1C1C1C;
+  --color-border:    #272727;
+  --color-red:       #E8320A;
+  --color-red-dim:   rgba(232, 50, 10, 0.08);
+  --color-red-glow:  rgba(232, 50, 10, 0.25);
+  --color-text:      #F0F0F0;
+  --color-muted:     #888888;
+
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-body:    "DM Sans", sans-serif;
+
+  --radius:          3px;
+  --transition:      0.25s ease;
+  --section-pad-y:   clamp(64px, 10vw, 120px);
+  --container-max:   1200px;
+  --container-pad:   clamp(20px, 5vw, 48px);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: -0.5px;
+}
+
+h1 {
+  font-size: clamp(64px, 10vw, 110px);
+  font-weight: 700;
+  line-height: 0.92;
+}
+
+h2 {
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+h3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+p {
+  color: var(--color-muted);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+.section {
+  padding: var(--section-pad-y) 0;
+}
+
+/* Speed lines animation */
+@keyframes speedline {
+  0%   { transform: rotate(-20deg) translateX(-300px); opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { transform: rotate(-20deg) translateX(300px); opacity: 0; }
+}
+
+/* Stats ticker */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  display: flex;
+  white-space: nowrap;
+  animation: ticker 38s linear infinite;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  align-items: center;
+  height: 52px;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+.ticker-sep {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--color-red);
+  border-radius: 50%;
+  margin: 0 28px;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes speedline { from { opacity: 0; } to { opacity: 0; } }
+  @keyframes ticker { from {} to {} }
+  .ticker-track { animation: none; }
+}
